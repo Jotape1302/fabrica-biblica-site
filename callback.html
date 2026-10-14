@@ -1,0 +1,15 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autorizando TikTok — Fábrica Bíblica</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:60px auto;padding:0 20px;line-height:1.6}code{background:#eee;padding:2px 6px}</style></head>
+<body><h1>Concluindo autorização…</h1>
+<p id="msg">Redirecionando para a Fábrica Bíblica neste computador.</p>
+<script>
+  // Repassa code/state (ou erro) do TikTok para o worker local. Nada é enviado a outro servidor.
+  var q = window.location.search;
+  if (!q) { document.getElementById('msg').textContent = 'Nenhum código de autorização recebido.'; }
+  else {
+    var target = 'http://localhost:8010/api/tiktok/callback' + q;
+    document.getElementById('msg').innerHTML = 'Se não for redirecionado automaticamente, <a href="' + target + '">clique aqui</a> (o worker precisa estar rodando neste computador).';
+    window.location.replace(target);
+  }
+</script></body></html>
